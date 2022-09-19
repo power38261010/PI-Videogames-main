@@ -1,0 +1,48 @@
+.pag{
+    align-content: center;
+    justify-content: center;
+    padding: 5px; 
+    padding-top: 20px;
+    background-attachment: fixed;
+    background-position: center center;
+    /* background-image: url(../../img/fondo2.png);   */ 
+    background-color: rgba(0, 0, 0, 0.603);
+    width: 85%;
+}
+.pag ul{
+    display:flex ;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+}
+.pag li{
+    list-style: none;
+    font-size: 14px;
+    margin: 2px;
+}
+.Btn button{
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px rgb(119, 0, 255);
+    /* border-color: aliceblue; */
+    cursor: pointer;
+}
+.Btn:hover button{
+    width: 38px;
+    height: 38px;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(44, 0, 240);
+    border-radius: 20px;
+    border-color: rgba(18, 18, 19, 0.63);
+    cursor: pointer;
+}
+.Btn:active button{
+    color: aliceblue;
+    cursor: pointer;  
+}
+
