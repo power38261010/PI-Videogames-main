@@ -1,20 +1,21 @@
 import axios from 'axios'
 import { 
-    GET_DETALLE,
-    FILTRO_API_DB,
-    FILTRO_GENRES,
-    GET_GENRES,
-    GET_NAME,
-    GET_VIDEOGAMES,
-    ORDEN_ABC,
-    ORDEN_RATING,
-    CLEAR_DETALLE,
+    GET_DETALLE, 
+    FILTRO_API_DB, 
+    FILTRO_GENRES, 
+    GET_GENRES, 
+    GET_NAME, 
+    GET_VIDEOGAMES, 
+    ORDEN_ABC, 
+    ORDEN_RATING, 
+    CLEAR_DETALLE, 
     CLEAR_SEARCH,
-    HOME,
+    HOME, 
     CLEAR_HOME,
     DELETE_VIDEOGAME_DB,
     DELETE_VIDEOGAME_API,
     CREATE_VIDEO,
+
 
 } from './constantes'
 
@@ -22,7 +23,7 @@ import {
 export function getvideogames(){
     return async function (dispatch){
         try {
-            let videogames= await axios.get('/videogames')
+            let videogames= await axios.get('http://localhost:3001/api/videogames')
             return dispatch({
                 type: GET_VIDEOGAMES,
                 payload: videogames.data
@@ -41,7 +42,7 @@ export function home(payload){
 export function getName(name){
     return async function(dispatch){
         try {
-            let json = await axios.get(`/videogames?name=${name}`)
+            let json = await axios.get(`http://localhost:3001/api/videogames?name=${name}`)
             return dispatch({
                 type: GET_NAME,
                 payload: json.data
@@ -55,7 +56,7 @@ export function getName(name){
 export function getGenres(){
   return async (dispatch)=>{
     try {
-      let infogenres = await axios.get('/generos')
+      let infogenres = await axios.get('http://localhost:3001/api/generos')
       return dispatch({
           type: GET_GENRES,
            payload: infogenres.data.map(genero => genero)
@@ -82,7 +83,7 @@ export function filtroCreadosApi(payload){
 }
 export function crearVideoGames(game){
     return async function(dispatch){
-        const crear = await axios.post(`/videogames`, game)
+        const crear = await axios.post(`http://localhost:3001/api/videogames`, game)
         console.log("datos post: "+ await crear.data )
         return dispatch ({type: CREATE_VIDEO , payload: crear.data})
     }
@@ -91,7 +92,7 @@ export function deleteVideogame(id){
     if(typeof id === 'string' && id.length>8)
     {
         return async function (dispatch){
-        await axios.delete(`/videogames/${id}`)
+        await axios.delete(`http://localhost:3001/api/videogames/${id}`)
         return dispatch({
             type: DELETE_VIDEOGAME_DB
         })
@@ -121,8 +122,8 @@ export function ordenRating(payload){
 export function getDetalle(id){
     return async function(dispatch){
         try {
-            const detail= await axios.get(`/videogames/${id}`)
-            
+            const detail= await axios.get(`http://localhost:3001/api/videogames/${id}`)
+
             return dispatch({
                 type: GET_DETALLE,
                 payload: detail.data
