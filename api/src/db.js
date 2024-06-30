@@ -2,14 +2,29 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {  DB_USER, DB_PASSWORD, DB_HOST,DB_NAME,} = process.env;
+const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE, PGPORT } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// Ruta donde has guardado los certificados
+const caPath1 = path.resolve(__dirname, 'certificates', 'Microsoft-RSA-Root-Certificate- Authority-2017.crt');
+const caPath2 = path.resolve(__dirname, 'certificates', 'DigiCertGlobalRootG2.crt.pem');
+const caPath3 = path.resolve(__dirname, 'certificates', 'DigiCertGlobalRootCA.crt');
+
+const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+      ca: [
+        fs.readFileSync(caPath1, 'utf-8'),
+        fs.readFileSync(caPath2, 'utf-8'),
+        fs.readFileSync(caPath3, 'utf-8')
+      ]
+    }
+  }
 });
-const basename = path.basename(__filename);
 
+const basename = path.basename(__filename);
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
@@ -28,16 +43,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const {  Videogame, Genre } = sequelize.models;
+const { Videogame, Genre } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Videogame.belongsToMany(Genre,{through:"Videogames_Genres"})
-Genre.belongsToMany(Videogame, {through:"Videogames_Genres"})
-
-
+Videogame.belongsToMany(Genre, { through: "Videogames_Genres" });
+Genre.belongsToMany(Videogame, { through: "Videogames_Genres" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  conn: sequelize,     // para importar la conexión { conn } = require('./db.js');
 };
