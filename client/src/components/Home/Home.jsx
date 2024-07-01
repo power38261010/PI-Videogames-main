@@ -52,7 +52,7 @@ export default function Home(){
           </div>
 
           <div className={style.home}>
-            {allVideos.length 
+            {allVideos.length
             ? (
             <div className={style.games}>
                   {videoActual.map(e=>{
@@ -60,12 +60,10 @@ export default function Home(){
                       <div>
                       <div className={style.cardHome} key={e.id}>
                       <Videogames key={e.id} id={e.id} name={e.name} image={e.image} genres={e.genres}/>
-                       
                       </div>
                       </div>
                     )
                   })}
-                                                      
                 </div>
               ):(
                 <div className={style.games}>
