@@ -17,7 +17,7 @@ export default function Videogames ({name, image, genres, id}){
 <div className={style.descriptions}>
                 <h2>{name}</h2>
                 
-                <h4>Géneros: {genres.map(e=>{
+                <h4>Géneros: {genres?.map(e=>{
                   return(
                     <p key={genresId++}> « {e} »</p>
                   )

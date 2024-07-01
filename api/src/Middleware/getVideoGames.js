@@ -14,7 +14,7 @@ const infoApi = async () => {
 
         pages.data?.results?.forEach( (e) => {
             let  plataforma =[]
-            e.platforms.map(p=>plataforma.push(p.platform.name))
+            e.platforms?.map(p=>plataforma.push(p.platform.name))
             games.push({
                 id: e.id,
                 name: e.name,
@@ -41,7 +41,7 @@ const infoDb= async()=>{
             }
         }
     })
-    const modeloVG =  VG.map(e=>({
+    const modeloVG =  VG?.map(e=>({
         id: e.id,
         name: e.name,
         description: e.description,
@@ -95,7 +95,7 @@ const infoById = async(id)=> {
                 rating: e.rating,
                 image: "https://ceinaseg.com/wp-content/uploads/2021/09/videogames-controller-1920x1080-1.jpg",
                 platform: e.platform,
-                genres: e.genres.map(e=>e.name)
+                genres: e.genres?.map(e=>e.name)
             };
             return idDb;
     } else {
@@ -108,8 +108,8 @@ const infoById = async(id)=> {
             description: a.description_raw,
             released: a.released,
             rating: a.rating,
-            platform: a.platforms.map(e=>e.platform.name),
-            genres: a.genres.map(e=>e.name)
+            platform: a.platforms?.map(e=>e.platform.name),
+            genres: a.genres?.map(e=>e.name)
         }
         return info;
     }

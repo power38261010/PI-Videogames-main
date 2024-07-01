@@ -55,7 +55,7 @@ export default function Home(){
             {allVideos.length
             ? (
             <div className={style.games}>
-                  {videoActual.map(e=>{
+                  {videoActual?.map(e=>{
                     return(
                       <div>
                       <div className={style.cardHome} key={e.id}>

@@ -7,7 +7,7 @@ try
 {
     const generosDb= await Genre.findAll()
 
-    const filtroDb= generosDb.map(e=>{
+    const filtroDb= generosDb?.map(e=>{
         return{
             id: e.id,
             name: e.name

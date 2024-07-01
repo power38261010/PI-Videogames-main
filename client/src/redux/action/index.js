@@ -29,6 +29,7 @@ export function getvideogames(){
                 payload: videogames.data
             })
         } catch (error) {
+            console.error('error ',error)
             console.log(error)
         }
     }
@@ -48,6 +49,7 @@ export function getName(name){
                 payload: json.data
             })
         } catch (error) {
+            console.error('error ',error)
             alert(`El nombre " ${name} " no corresponde a un VideoGame existente`)
         }
     }
@@ -59,7 +61,7 @@ export function getGenres(){
       let infogenres = await axios.get('api/generos')
       return dispatch({
           type: GET_GENRES,
-           payload: infogenres.data.map(genero => genero)
+           payload: infogenres.data?.map(genero => genero)
       })
     } catch (error) {
         console.log(error)
@@ -129,6 +131,7 @@ export function getDetalle(id){
                 payload: detail.data
             })
         } catch (error) {
+            console.error('error ',error)
             console.log(error)
             return dispatch({
                 type: GET_DETALLE,

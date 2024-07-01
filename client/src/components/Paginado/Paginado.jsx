@@ -12,7 +12,7 @@ export default function Paginado({videoByPag, allVideos, paginado}){
     <div className={style.pag}>      
         <ul>
             {pageNumero &&
-            pageNumero.map(numero=>(
+            pageNumero?.map(numero=>(
               <li>
                 <span className={style.Btn}>
                 <button  onClick={()=>paginado(numero)} key={numero}>{numero}</button>

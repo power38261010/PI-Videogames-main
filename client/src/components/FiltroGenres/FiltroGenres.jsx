@@ -27,7 +27,7 @@ export default function FiltroGenres({setPaginaActual, setOrder}){
       <option value='default' disabled='disabled'>Géneros</option>
         <option value='All'>Todos</option>
         {
-          allGenres.map((e)=>(
+          allGenres?.map((e)=>(
             <option key={ e.name } value={ e.name }>
               {e.name}
             </option>

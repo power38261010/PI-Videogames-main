@@ -24,7 +24,7 @@ export default function CrearVideoGames(){
   const history = useHistory();
   const [errors, setErrors] = useState({})
 
-  let gameGenres2 = gameGenres.map((e) => e.name)
+  let gameGenres2 = gameGenres?.map((e) => e.name)
   const [input, setInput] = useState({
     name:'',
     description:'',
@@ -198,7 +198,7 @@ export default function CrearVideoGames(){
 
           <div className={style.check}><label> Plataforma permitidas: puedes seleccionar hasta 5 plataformas </label>
           <div>
-          {arrayPlat.map(plat=> {
+          {arrayPlat?.map(plat=> {
             return(
               <div className={style.checkbox}>
                 <ul><li>
@@ -222,7 +222,7 @@ export default function CrearVideoGames(){
             <div className={style.check}><label> Géneros: puedes seleccionar hasta 4 géneros</label>
           <div>
             {
-              gameGenres2.map((genres) => {               
+              gameGenres2?.map((genres) => {               
                 return (                  
                     <div className={style.checkbox}>
                       <ul><li>

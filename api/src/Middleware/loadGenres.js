@@ -8,7 +8,7 @@ const loadGeneros= async()=>{
   if(!genero.length)
 {
       const picar= await axios.get(URL)
-      const datos= picar.data.results.map((e)=>{  return{ id:e.id , name : e.name}  }   )
+      const datos= picar.data?.results?.map((e)=>{  return{ id:e.id , name : e.name}  }   )
       await Genre.bulkCreate(datos)
     
       console.log("DB Success")
