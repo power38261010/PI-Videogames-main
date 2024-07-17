@@ -24,6 +24,10 @@ const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${
   }
 });
 
+// const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`, {
+//   dialect: 'postgres'
+// });
+
 const basename = path.basename(__filename);
 const modelDefiners = [];
 
